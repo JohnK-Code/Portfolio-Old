@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
       // Code for ajax form GET request - Used to update the Car Model field using Manufacturer field Info.
       $("#car_make").change(function(e){  // Used to update the 'model' field in the form when a 'manufacturer' is selected - No page reload required.
-        e.preventDefault();
+        e.preventDefault();   
         // Get car make
         var car_make = $(this).children("option:selected").val();
         // GET ajax request
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
             data: {"car_make": car_make},
             success: function(data) { // Handle response
                 $('#car_model option').remove()
-                $('#car_model').append(`<option>Model</option>`)
+                $('#car_model').append(`<option value>Model</option>`)
                 $.each(data, function(index, model){
                     $('#car_model').append(`<option value="${model}">${model}</option>`)
                 })

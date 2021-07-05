@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-10">
                 <form class="form-inline-home" action="{% url 'car_dealer:show_search' %}" method="GET">
-                    <label class="sr-only" for="index_car_make">Make</label>
+                    <label class="sr-only" for="car_make">Make</label>
                     <select name="make" id="car_make" data-url="{% url 'car_dealer:make_model' %}">
                         <option value="">Make</option>
                         {% for make in make_list %}

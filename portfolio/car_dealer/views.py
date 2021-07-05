@@ -72,7 +72,6 @@ def formMakeModel(request):
 # view function is used to get required data and pass it to the showroom.html template - used to render the page also
 def showroom(request): 
     make = Make.objects.all().values_list('manufacturer', flat=True)
-    model = Model.objects.all().values_list('name', flat=True)
     query_list = Vehicle.objects.all().order_by('-id')
 
     count = query_list.count()
@@ -83,7 +82,6 @@ def showroom(request):
 
     return render(request, 'car_dealer/showroom.html', {
         "make_list": make,
-        "model_list": model,
         "trans_list": TRANS,
         "fuel_list": FUEL,
         "Mileage": MILEAGE,
@@ -97,16 +95,17 @@ def showroom(request):
 # (GET form request) Used to handle the search form on the showroom page and show the results from the query carried out
 def showroom_search(request): 
     make = Make.objects.all().values_list('manufacturer', flat=True)
-    model = Model.objects.all().values_list('name', flat=True)
     query_list = Vehicle.objects.all().order_by('-id')
     if 'search' in request.GET:
         if 'make' in request.GET:
             car_make = request.GET['make']
             if car_make:
+                print("John " + car_make) #*******************
                 query_list = query_list.filter(make__manufacturer=car_make)
         if 'model' in request.GET:
             car_model = request.GET['model']
             if car_model:
+                print("John" + car_model) #*******************
                 query_list = query_list.filter(model__name=car_model)
         if 'trans' in request.GET:
             car_trans = request.GET['trans']
@@ -129,6 +128,7 @@ def showroom_search(request):
             if car_max:
                 query_list = query_list.filter(price__lte=car_max)
         
+        
         count = query_list.count()
 
         paginator = Paginator(query_list, 2)
@@ -137,7 +137,6 @@ def showroom_search(request):
 
         response = render(request, 'car_dealer/showroom.html', {
             "make_list": make,
-            "model_list": model,
             "trans_list": TRANS,
             "fuel_list": FUEL,
             "Mileage": MILEAGE,
@@ -200,7 +199,6 @@ def showroom_search(request):
 
         return render(request, 'car_dealer/showroom.html', {
             "make_list": make,
-            "model_list": model,
             "trans_list": TRANS,
             "fuel_list": FUEL,
             "Mileage": MILEAGE,
