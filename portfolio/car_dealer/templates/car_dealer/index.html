@@ -1,0 +1,116 @@
+{% extends 'car_dealer/layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+
+    <div class="container-fluid"> <!-- search section - find a car -->
+        <div class="row home-form-bg">
+            <div class="col-lg-2">
+                <div id="find-div">
+                    <h5 id="find-car">FIND A CAR</h5>
+                    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <form class="form-inline-home" action="{% url 'car_dealer:show_search' %}" method="GET">
+                    <label class="sr-only" for="index_car_make">Make</label>
+                    <select name="make" id="car_make" data-url="{% url 'car_dealer:make_model' %}">
+                        <option value="">Make</option>
+                        {% for make in make_list %}
+                            <option value="{{ make }}">{{ make }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="sr-only" for="car_model">Model</label>
+                    <select name="model" id="car_model">
+                        <option value="">Model</option> <!-- More options being added using jQuery -->
+                    </select>
+                    <label class="sr-only" for="car_trans">Transmission</label>
+                    <select name="trans" id="car_trans">
+                        {% for trans in trans_list %}
+                            <option value="{{ trans.0 }}">{{ trans.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="sr-only" for="car_min">Min Value</label>
+                    <select name="min" id="car_min">
+                        {% for value in MIN %}
+                            <option value="{{ value.0 }}">{{ value.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="sr-only" for="car_max">Max Value</label>
+                    <select name="max" id="car_max">
+                        {% for value in MAX %}
+                            <option value="{{ value.0 }}">{{ value.1 }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" name="search">SEARCH</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" id="home-about-section"> <!-- about us section -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center align-self-center">
+                <img id="home-about-img" src="{% static 'img/Showroom.jpg' %}" alt="Showroom Image">
+            </div>
+            <div class="col-lg-5 col-md-11 col-sm-11 align-self-center">
+                <h1 class="text-center">About Us</h1>
+                <div id="about-home-text-div">
+                    <p>Established in 2021. Car Shark is located in Broughty Ferry on the outskirts of Dundee, and we specialise in 3 to 5 year old used-cars. While we deal in all makes and models of used-cars we predominantly deal in Audi.</p>
+                    <p>We are able to help you purchase your vehicle offering competitive finance packages. For more information or to apply for finance online with us, please see our finance page. Finance subject to status. Written details on request.</p>
+                    <p>You can also find details on how you can contact us regarding any questions you may have or for further details on any of the used cars you have seen on the advertised. Come and visit us and we are sure you will agree that our cars and services are second to none.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" id="featured-section"> <!-- Featured Section - Uses Swiper JS -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-group">
+                        <!-- Slider main container -->
+                        <div class="swiper-container">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                
+                                {% for car in cars %}
+                                    <!-- Slides -->
+                                    <div class="swiper-slide">
+                                        <div class="card" id="card-edit">
+                                            <img class="card-img-top card-image" style="height: 200px;" src="media/{{ car.images.all.0.images }}" alt="Car Image">
+                                            <div class="card-body card-body-edit">
+                                                <h5 class="card-title">{{ car.make }}</h5>
+                                                <h6 class="card-subtitle" id="card-subtitle">£{{ car.price|intcomma }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                        
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev" id="swiper-button-prev"></div>
+                        <div class="swiper-button-next" id="swiper-button-next"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+
+
+
+{% endblock body %}

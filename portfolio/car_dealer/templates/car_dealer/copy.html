@@ -1,0 +1,103 @@
+#car-section-showroom {
+    background-color: #347c5c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.show-car-detail-div {
+    background-color: #17171c;
+    border: 3px solid #ac815b;
+    margin: 20px;
+}
+.show-img-div {
+    padding: 10px;
+}
+.show-car-img {
+    padding: 0px;
+    border: none;
+}
+.show-make-price-div {
+    margin-top: 5px;
+}
+.show-price {
+    text-align: right;
+}
+.details-left {
+    float: left;
+}
+.details-right {
+    float: right;
+    font-weight: bold;
+}
+.detail-row {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background-color: #1e1e24;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+.show-details-button {
+    background-color: #ac815b;
+    width: 80%;
+    max-width: 200px;
+    color: #e7e7e6;
+    font-weight: bold;
+    float: right;
+}
+
+
+
+
+
+
+
+{% for car in cars %}
+            <div class="row show-car-detail-div">
+                <div class="col-lg-3 show-img-div">
+                    <img class="img-thumbnail show-car-img" src="media/{{ car.images.all.0.images }}" alt="Car Image">
+                </div>
+                <div class="col-lg-9">
+
+                    <div class="row show-make-price-div">
+                        <div class="col-6">
+                            <h4>{{ car.make }}</h4>
+                        </div>
+                        <div class="col-6 show-price">
+                            <h5>£{{ car.price|intcomma }}</h5>
+                        </div>
+                    </div>
+
+                    <div class="row detail-row">
+                        <div class="col-md-4">
+                            <p><span class="details-left">Mileage</span><span class="details-right">{{ car.mileage|intcomma }}</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span class="details-left">Fuel Type</span><span class="details-right">{{ car.fuel_type }}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row detail-row">
+                        <div class="col-md-4">
+                            <p><span class="details-left">Engine Size</span><span class="details-right">{{ car.engine }}cc</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span class="details-left">Transmission</span><span class="details-right">{{ car.transmission }}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row detail-row">
+                        <div class="col-md-4">
+                            <p><span class="details-left">Body Style</span><span class="details-right">{{ car.body_style }}</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span class="details-left">Colour</span><span class="details-right">{{ car.colour }}</span></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="show-details-button">FULL DETAILS</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}

@@ -1,0 +1,168 @@
+{% extends 'car_dealer/layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+
+    <div class="container-fluid" id="showroom-form-div"> <!-- Search Form Section -->
+        <form action="{% url 'car_dealer:show_search' %}" method="GET">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control show-select" name="make" id="car_make" data-url="{% url 'car_dealer:make_model' %}">
+                        <option value="">Make</option>
+                        {% for make in make_list %}
+                            <option value="{{ make }}">{{ make }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-control show-select" name="model" id="car_model">
+                        <option value="">Model</option> <!-- More options being added using jQuery -->
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control show-select" name="trans" id="car_trans">
+                        {% for trans in trans_list %}
+                            <option value="{{ trans.0 }}">{{ trans.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-control show-select" name="fuel" id="car_fuel">
+                        {% for fuel in fuel_list %}
+                            <option value="{{ fuel.0 }}">{{ fuel.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control show-select" name="mileage" id="car_mile">
+                        {% for mile in Mileage %}
+                            <option value="{{ mile.0 }}">{{ mile.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="row">
+                        <div class="col-6" id="show-search-right">
+                            <select class="form-control show-select" name="min" id="car_min">
+                                {% for value in MIN %}
+                                    <option value="{{ value.0 }}">{{ value.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-6" id="show-search-left">
+                            <select class="form-control show-select" name="max" id="max_id">
+                                {% for value in MAX %}
+                                    <option value="{{ value.0 }}">{{ value.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12 col-6">
+                            <button class="btn" name="search" id="show-search-button" type="submit">SEARCH</button>
+                        </div>
+                        <div class="col-md-12 col-6">
+                            <h5 id="car-count">{{ count }} VEHICLES AVAILABLE</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container-fluid" id="car-section-showroom"> <!-- Car Detail Section -->
+    
+        {% for car in cars %}
+
+            <div class="row show-car-card-div">
+
+                <div class="col-lg-4 d-flex align-items-center justify-content-center show-car-img-div">
+                    <img class="img-thumbnail show-car-img" src="media/{{ car.images.all.0.images }}" alt="Car Image">
+                </div>
+                <div class="col-lg-8">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="show-car-heading">{{ car.make }}</h4>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="show-car-heading" id="show-heading-price">£{{ car.price|intcomma }}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-borderless show-car-table">
+                                    <tbody>
+                                        <tr class="show-detail-row-colour">
+                                            <td>Mileage</td>
+                                            <td><b>{{ car.mileage|intcomma }}</b></td>
+                                            <td>Fuel Type</td>
+                                            <td><b>{{ car.fuel_type }}</b></td>
+                                        </tr>
+                                        <tr class="show-detail-row-colour">
+                                            <td>Engine Size</td>
+                                            <td><b>{{ car.engine }}cc</b></td>
+                                            <td>Transmission</td>
+                                            <td><b>{{ car.transmission }}</b></td>
+                                        </tr>
+                                        <tr class="show-detail-row-colour">
+                                            <td>Body Style</td>
+                                            <td><b>{{ car.body_style }}</b></td>
+                                            <td>Colour</td>
+                                            <td><b>{{ car.colour }}</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{% url 'car_dealer:car' car.id %}"><button class="show-details-button">FULL DETAILS</button></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+
+        <nav aria-label="Page navigation example">  <!-- Pagination Code -->
+            <ul class="pagination justify-content-center">
+                {% if cars.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ cars.previous_page_number }}">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                {% endif %}
+                {% for i in cars.paginator.page_range %}
+                    {% if cars.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">
+                                {{ i }}
+                                <span class="sr-only">(current)</span>
+                            </span>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if cars.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ cars.next_page_number }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+        
+
+{% endblock body %}
