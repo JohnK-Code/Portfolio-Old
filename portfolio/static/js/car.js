@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
             data: {"car_make": car_make},
             success: function(data) { // Handle response
                 $('#car_model option').remove()
-                $('#car_model').append(`<option value>Model</option>`)
+                $('#car_model').append(`<option value>Model</option>`) // value in option element is important and stops form working without it
                 $.each(data, function(index, model){
                     $('#car_model').append(`<option value="${model}">${model}</option>`)
                 })

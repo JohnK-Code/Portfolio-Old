@@ -3,9 +3,10 @@
 #   
 #
 #   ************ Homepage is basically done, maybe check responsiveness and add links on featured section once car pages done ************
-#   ************ On Showroom page now - ** Search form now working on showroom and index page - Change size and length of description field in Django admin ************
+#   ************ Change size and length of description field in Django admin ************
 #
-#    ************ Fix car model database names in file and recreate - on line '441' of file and number 36 in link to github car-make-model-data - car models before this line have been created ** 
+#   ************ Maybe start on the car details page, as showroom and index are basically finished - DO NOW**
+#   ************ Links need to be added to the index page featured section cars after the car details page is finished
 
 
 from django.db import models
