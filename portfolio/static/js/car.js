@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener("DOMContentLoaded", function (){
 
     // Code for Swiper JS Initialization 
     var swiper = new Swiper(".swiper-container", {
@@ -21,10 +21,6 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         loop: true,
         loopFillGroupWithBlank: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -50,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 })
             }
         })
-    })
-    
+    })  
+
 
 })

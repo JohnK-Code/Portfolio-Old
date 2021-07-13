@@ -351,7 +351,72 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 
 /*  *************************** CAR PAGE CSS ***************************  */
     /* Css for car detail section - table and images */
-    
+#car-details-main {
+    background-color: #347c5c;
+    border-top: #ac815b solid 5px;;
+    padding: 10px 15px;
+}
+#car-page-heading {
+    margin-left: 20px;
+}
+#car-page-price {
+    float: right;
+    padding-right: 20px;
+}
+#car-page-img-spec {
+    background-color: #17171c;
+    margin: 30px 50px;
+}
+    /* Image carousel CSS */
+.car-container {
+    position: relative;
+}
+#mySlides {
+    background-color: #ac815b;
+}
+.featured {
+    display: none;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: none;
+}
+.mySlideDisplay {
+    display: block;
+}
+#prev, #next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: 20%;
+    min-width: 70px;
+    max-width: 100px;
+    padding: 16px;
+    margin-top: -50px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: .3s;
+}
+#next {
+    right: 0;
+}
+#slider {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+.thumbnail {
+    opacity: 0.5;
+    max-width: 150px;
+    max-height: 80px;
+    object-fit: cover;
+}
+.active {
+    opacity: 1;
+}
+
+
+
 
 
     /* Common media query sizes - add code for elements that need to be responsive into media queries below  */

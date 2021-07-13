@@ -3,10 +3,88 @@
 {% load humanize %}
 
 {% block body %}
-
-    <div class="container-fluid">
-            
+    <div class="container-fluid" id="car-details-main">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 id="car-page-heading">{{ car.year }} {{ car.make }} {{ car.model }}</h4>
+            </div>
+            <div class="col-sm-6">
+                <h4 id="car-page-price">£{{ car.price|intcomma }}</h4>
+            </div>
+        </div>
+        <div class="row" id="car-page-img-spec">
+            <div class="col-lg-4">
+                <div class="car-container">
+                    <div id="mySlides">
+                        {% for image in car_images %}
+                            <img class="featured" src="/media/{{ image.images }}" alt="Car Image {{ forloop.counter }}">
+                        {% endfor %}
+                    </div>
+                        <img id="next" src="{% static 'img/arrow-next.png' %}" alt="">
+                        <img id="prev" src="{% static 'img/arrow-prev.png' %}" alt="">
+                        <div id="slider">
+                            {% for image in car_images %}
+                                <img class="thumbnail" src="/media/{{ image.images }}" alt="">
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <h4>{{ car.title }}</h4>
 {% endblock body %}
+
+{% block javascript %}
+<script>
+    // Makes the first featured image visible
+    var mySlide_select = document.getElementById('mySlides');
+    var first_mySlide = mySlide_select.firstElementChild;
+    first_mySlide.className = "featured mySlideDisplay";
+
+    // Makes the first thumbnail image have an opacity of 1
+    var slider_select = document.getElementById('slider');
+    var first_slide = slider_select.firstElementChild;
+    first_slide.className = "thumbnail active";
+
+    var slideIndex = 0;
+    var featuredImages = document.getElementsByClassName('featured');
+    var thumbImages = document.getElementsByClassName('thumbnail');
+
+    var next = document.getElementById('next');
+    var prev = document.getElementById('prev');
+
+    next.addEventListener('click', function(){
+        changeSlideButton(1)
+    })
+    
+    prev.addEventListener('click', function(){
+        changeSlideButton(0)
+    })
+
+
+    // Code for changing featured and thumbnail images
+    function changeSlideButton(n){
+        if(n == 0 && slideIndex > 0 || n == 1 && slideIndex < featuredImages.length - 1){
+            // code for getting the featured image at index 'slideIndex' and removing the 'mySlideDisplay' class
+            let currentFeatured = featuredImages[slideIndex];
+            currentFeatured.className = "featured";
+            // code for getting the thumbnail image at index 'slideIndex' and removing the 'active' class 
+            let currentThumb = thumbImages[slideIndex];
+            currentThumb.className = "thumbnail";
+            // code for incrementing and decrementing 'slideIndex' by 1
+            if(n == 1){
+                slideIndex = slideIndex + 1;
+            }else{
+                slideIndex = slideIndex - 1;
+            }
+            
+            // code for getting featured image at index 'slideIndex' and adding the 'mySlideDisplay' class
+            let newFeatured = featuredImages[slideIndex];
+            newFeatured.className = "featured mySlideDisplay";
+            // code for getting the thumbnail image at index 'slideIndex' and adding the 'active' class
+            let newThumb = thumbImages[slideIndex];
+            newThumb.className = "thumbnail active";
+            newThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+    }
+</script>
+{% endblock javascript %}

@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.http import response
 from django.shortcuts import render
 
-from car_dealer.models import Make, Model, Vehicle
+from car_dealer.models import Make, Model, Vehicle, Image
 
 # Below list's of tuples are used to pass information to search forms - These are used as values for the select options in each search form
 TRANS = [
@@ -214,6 +214,8 @@ def showroom_search(request):
 # view function is used to pass data to the car.html page and render it.
 def car(request, id):   
     car = Vehicle.objects.get(id=id)
+    car_images = Image.objects.values('images').filter(vehicle_id=id)
     return render(request, 'car_dealer/car.html', {
-        'car': car
+        'car': car,
+        'car_images': car_images
     })
