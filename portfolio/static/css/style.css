@@ -367,18 +367,24 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
     background-color: #17171c;
     margin: 30px 50px;
 }
+@media (max-width: 600px){
+    #car-page-img-spec {
+        margin: 30px 10px;
+    }
+}
     /* Image carousel CSS */
 .car-container {
     position: relative;
 }
 #mySlides {
-    background-color: #ac815b;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .featured {
     display: none;
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: none;
+    padding: 0;
+    border: 2px solid #ac815b;
+    border-radius: 0;
 }
 .mySlideDisplay {
     display: block;
@@ -410,9 +416,20 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
     max-width: 150px;
     max-height: 80px;
     object-fit: cover;
+    margin: 10px 5px;
+    border: 2px solid #ac815b;
 }
 .active {
     opacity: 1;
+}
+    /* Car Spec Table */
+.car-page-table {
+    color: #e7e7e6;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.car-detail-row-colour {
+    background-color: #1c1c22;
 }
 
 

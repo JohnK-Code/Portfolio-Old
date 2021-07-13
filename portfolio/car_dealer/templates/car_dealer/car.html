@@ -3,30 +3,83 @@
 {% load humanize %}
 
 {% block body %}
+    <!-- Car Details -->
     <div class="container-fluid" id="car-details-main">
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="row">   <!-- Row for 'year, make, model and price' - This is the white/gray text at the top of the green section  -->
+            <div class="col-8">
                 <h4 id="car-page-heading">{{ car.year }} {{ car.make }} {{ car.model }}</h4>
             </div>
-            <div class="col-sm-6">
+            <div class="col-4">
                 <h4 id="car-page-price">£{{ car.price|intcomma }}</h4>
             </div>
         </div>
-        <div class="row" id="car-page-img-spec">
-            <div class="col-lg-4">
+        <div class="row" id="car-page-img-spec">    <!-- This row is for the car spec and images - Top black section -->
+            <div class="col-lg-6">  <!-- Image column -->
                 <div class="car-container">
-                    <div id="mySlides">
+                    <div id="mySlides" class="d-flex align-items-center justify-content-center">
                         {% for image in car_images %}
-                            <img class="featured" src="/media/{{ image.images }}" alt="Car Image {{ forloop.counter }}">
+                            <img class="featured img-thumbnail" src="/media/{{ image.images }}" alt="Car Image {{ forloop.counter }}">
                         {% endfor %}
                     </div>
                         <img id="next" src="{% static 'img/arrow-next.png' %}" alt="">
                         <img id="prev" src="{% static 'img/arrow-prev.png' %}" alt="">
                         <div id="slider">
                             {% for image in car_images %}
-                                <img class="thumbnail" src="/media/{{ image.images }}" alt="">
+                                <img class="thumbnail" src="/media/{{ image.images }}" alt="Thumbnail Image {{ forloop.counter }}" data-image-num="{{ forloop.counter }}">
                             {% endfor %}
                         </div>
+                </div>
+            </div>
+            <div class=col-lg-6>
+                <div class="table-responsive">
+                    <table class="table table-borderless car-page-table">
+                        <tbody>
+                            <tr class="car-detail-row-colour">
+                                <td>Body Style</td>
+                                <td>{{ car.body_style }}</td>
+                            </tr>
+                            <tr>
+                                <td>Engine Size</td>
+                                <td>{{ car.engine }} cc</td>
+                            </tr>
+                            <tr class="car-detail-row-colour">
+                                <td>Fuel Type</td>
+                                <td>{{ car.fuel_type }}</td>
+                            </tr>
+                            <tr>
+                                <td>Number of Doors</td>
+                                <td>{{ car.doors }}</td>
+                            </tr>
+                            <tr class="car-detail-row-colour">
+                                <td>Number of Seats</td>
+                                <td>{{ car.seats }}</td>
+                            </tr>
+                            <tr>
+                                <td>Transmission</td>
+                                <td>{{ car.transmission }}</td>
+                            </tr>
+                            <tr class="car-detail-row-colour">
+                                <td>Mileage</td>
+                                <td>{{ car.mileage|intcomma }}</td>
+                            </tr>
+                            <tr>
+                                <td>Colour</td>
+                                <td>{{ car.colour }}</td>
+                            </tr>
+                            <tr class="car-detail-row-colour">
+                                <td>Insurance</td>
+                                <td>Group {{ car.insurance_group }}</td>
+                            </tr>
+                            <tr>
+                                <td>0-60 mph</td>
+                                <td>{{ car.zero_sixty }}</td>
+                            </tr>
+                            <tr class="car-detail-row-colour">
+                                <td>Top Speed</td>
+                                <td>{{ car.top_speed }} mph</td>
+                            </tr>
+                        </tbody>
+                    </table>                
                 </div>
             </div>
         </div>
@@ -35,56 +88,86 @@
 
 {% block javascript %}
 <script>
+    // Description ***********
+    // Main image will be displayed if it has a class of 'mySlideDisplay'
+    // Thumbnail will be more visible and scrolled into view if it has a class of 'active'
+    // Description ***********
+
     // Makes the first featured image visible
     var mySlide_select = document.getElementById('mySlides');
     var first_mySlide = mySlide_select.firstElementChild;
-    first_mySlide.className = "featured mySlideDisplay";
+    first_mySlide.className = "featured img-thumbnail mySlideDisplay";
 
     // Makes the first thumbnail image have an opacity of 1
     var slider_select = document.getElementById('slider');
     var first_slide = slider_select.firstElementChild;
     first_slide.className = "thumbnail active";
 
+    // Set slideIndex vaiable to '0'
     var slideIndex = 0;
+    // Get all elements with a class of 'featured'
     var featuredImages = document.getElementsByClassName('featured');
+    // Get all elements with a class of thumbnail
     var thumbImages = document.getElementsByClassName('thumbnail');
 
+    // Add event listener to all thumbnail images and get the data attriute of the element that is 
+    // clicked and ssign it to the 'slideIndex' variable
+    // Call changeSlide function and pass 'slideIndex' variable as a parameter
+    for(var x = 0; x < thumbImages.length; x++){
+        thumbImages[x].addEventListener('click', function(){
+            var imageNum = $(this).data('image-num');
+            slideIndex = imageNum -1;
+            changeSlide(slideIndex);
+        })
+    }
+
+    // Get elements with 'next' and 'prev' id and assign to variable for use later
     var next = document.getElementById('next');
     var prev = document.getElementById('prev');
 
+    // add event listener to 'next' variable/element assigned earlier
+    // if 'slideIndex' inbetween specified values add one to its value
+    // Call changeSlide function using newly altered 'slideIndex' vaiable as a parameter
     next.addEventListener('click', function(){
-        changeSlideButton(1)
+        if(slideIndex >= 0 && slideIndex < thumbImages.length - 1){
+            slideIndex = slideIndex + 1;
+            changeSlide(slideIndex);
+        }
     })
     
+    // add event listener to 'prev' variable/element assigned earlier
+    // if 'slideIndex' inbetween specified values subtract one from its value
+    // Call changeSlide function using newly altered 'slideIndex' vaiable as a parameter
     prev.addEventListener('click', function(){
-        changeSlideButton(0)
+        if(slideIndex > 0 && slideIndex < thumbImages.length + 1){
+            slideIndex = slideIndex -1;
+            changeSlide(slideIndex);
+        }
     })
 
 
-    // Code for changing featured and thumbnail images
-    function changeSlideButton(n){
-        if(n == 0 && slideIndex > 0 || n == 1 && slideIndex < featuredImages.length - 1){
-            // code for getting the featured image at index 'slideIndex' and removing the 'mySlideDisplay' class
-            let currentFeatured = featuredImages[slideIndex];
-            currentFeatured.className = "featured";
-            // code for getting the thumbnail image at index 'slideIndex' and removing the 'active' class 
-            let currentThumb = thumbImages[slideIndex];
-            currentThumb.className = "thumbnail";
-            // code for incrementing and decrementing 'slideIndex' by 1
-            if(n == 1){
-                slideIndex = slideIndex + 1;
-            }else{
-                slideIndex = slideIndex - 1;
+    // function to control image and thumbnail slider 
+    // function used to change what 'featured' and 'thumbnail' image is displayed
+    function changeSlide(slideIndex){
+        
+        // Clear 'mySlideDisplay' class from all featured images
+        // Clear 'active' class from all thumbnail images
+        if(slideIndex >= 0 && slideIndex < thumbImages.length){
+            for(var i = 0; i < thumbImages.length; i++){
+                featuredImages[i].className = "featured";
+                thumbImages[i].className = "thumbnail";
             }
             
             // code for getting featured image at index 'slideIndex' and adding the 'mySlideDisplay' class
             let newFeatured = featuredImages[slideIndex];
-            newFeatured.className = "featured mySlideDisplay";
+            newFeatured.className = "featured img-thumbnail mySlideDisplay";
+
             // code for getting the thumbnail image at index 'slideIndex' and adding the 'active' class
             let newThumb = thumbImages[slideIndex];
             newThumb.className = "thumbnail active";
             newThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         }
+        
     }
 </script>
 {% endblock javascript %}
