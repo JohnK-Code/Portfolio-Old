@@ -5,7 +5,7 @@
 #   ************ Homepage is basically done, maybe check responsiveness and add links on featured section once car pages done ************
 #   ************ Change size and length of description field in Django admin ************
 #
-#   ************ Car Details - Image Scroller working - Car make, model at top of page so they go underneath each other when on smaller screen **
+#   ************ Car page - ADD CAR DESCRIPTION DIV UNDER SPECS AND IMAGE DIV ON CAR PAGE **
 #   ************ Links need to be added to the index page featured section cars after the car details page is finished
 
 

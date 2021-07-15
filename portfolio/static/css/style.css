@@ -1,7 +1,11 @@
+/* **************************** CSS FOR LAYOUT.HTML - ALL PAGES **************************** */
+body {
+    font-family: 'Merriweather', serif;
+}
+
 h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
     color: #e7e7e6;
 }
-
 
     /* header CSS - above navbar */
 #header {   /* Used to change background color of #header element */
@@ -16,11 +20,12 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
     font-size: 1rem;
 }
 
-
     /* navbar CSS */
 #navbar { /* Change background colour of navbar and add top and bottom border */
     background-color: #347c5c;
     border-bottom: #ac815b 5px solid;
+    font-family: "BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue","Arial","Noto Sans","sans-serif","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 22px;
 }
 .nav-link { /* Change color of navbar links and make font bold */
     color: #e7e7e6;
@@ -29,11 +34,10 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 .nav-link:hover { /* Change color of navbar link when hovering over them */
     color: #ac815b;
 }
-
-.custom-toggler.navbar-toggler { /* Change colour of toggler button border */
+.custom-toggler.navbar-toggler { /* Change colour of toggler button border - burger button */
     border: 2px solid #ac815b;
 }
-.custom-toggler.navbar-toggler-icon { /* Change the colour of the nabar toggler icon - 3 lines */
+.custom-toggler.navbar-toggler-icon { /* Change the colour of the nabar toggler icon - 3 lines - burger button */
     background-image: url(
         "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(172, 129, 91, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
@@ -44,135 +48,7 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
     min-height: 130px;
 }
 
-
-    /* CSS for styling the small search form under the header image */
-.home-form-bg {
-    background-color: #347c5c;
-    border-top: 5px solid #ac815b;
-}
-#find-div {
-    margin-top: 20px;
-    white-space: nowrap;
-    float: right;
-}
-#find-car {
-    display: inline;
-    margin-right: 10px;
-}
-.fa-search {
-    color: #e7e7e6;
-}
-.form-inline-home {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    margin: 10px 10px 10px 0;
-}
-
-.form-inline-home select {
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    background-color: #e7e7e6;
-    border: 1px solid #17171c;
-    box-shadow: -5px 5px 3px #17171c;
-}
-.form-inline-home button {
-    padding: 10px 20px;
-    background-color: #ac815b;
-    box-shadow: -5px 5px 3px #17171c;
-    color: #e7e7e6;
-    cursor: pointer;
-    font-weight: bold;
-}
-.form-inline-home button:hover {
-    background-color: #926d4d;
-}
-@media (max-width: 800px) {
-    .form-inline-home select {
-        margin: 10px 0;
-    }
-    .form-inline-home {
-        flex-direction: column;
-        align-items: stretch;
-        margin-bottom: 20px;
-    }
-}
-
-
-    /* CSS for home page about us section */
-#home-about-section {
-    background-color: #17171c;
-    border-bottom: #ac815b solid 5px;
-}
-#home-about-img   {
-    width: 100%;
-    max-width: 500px;
-    border: #e7e7e6 solid 3px;
-    margin: 30px;
-}
-@media (max-width: 580px) {
-    #home-about-img {
-        margin: 45px 0px;
-    }
-}
-#about-home-text-div {
-    margin: 20px;
-    text-align: center;
-}
-
-
-    /* CSS for home page featured section */
-#featured-section {
-    background-color: #347c5c;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-.card-image {
-    border: #ac815b solid 2px;
-}
-#card-edit {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    border: solid #ac815b 2px;
-    background-color: #17171c;
-}
-.card-title, .card-subtitle {
-    display: inline;
-}
-#card-subtitle {
-    float: right;
-    margin-top: 5px;
-}
-#swiper-button-next {
-    background-image: url('/static/img/arrow-next.png');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    right: -20px;
-}
-#swiper-button-prev {
-    background-image: url('/static/img/arrow-prev.png');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    left: -20px;
-}
-@media (max-width: 580px) {
-    #swiper-button-prev {
-        left: 40px
-    }
-    #swiper-button-next {
-        right: 40px
-    }
-}
-#swiper-button-next::after, #swiper-button-prev::after {
-    display: none;
-  }
-
-
-    /* CSS for Footer */
+/* CSS for Footer */
 #footer {
     background-color: #17171c;
     border-top: #ac815b solid 5px;
@@ -230,146 +106,305 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 #footer-img-logo {
     max-width: 120px;
 }
-
-
-/*  *************************** SHOWROOM PAGE CSS ***************************  */
-    /* CSS for Showroom Search form Section */
-#showroom-form-div {
-    background-color: #347c5c;
-    padding: 20px;
-    border-top: #ac815b solid 5px;
+#mailto:hover {
+    text-decoration: none;
+    border-bottom: 2px solid #ac815b;
 }
-.show-select  {
+#mailto-h5:hover {
+    color: #ac815b;
+}
+
+
+
+
+/* **************************** CSS FOR HOME PAGE **************************** */
+
+    /* CSS for styling the small search form under the header image */
+.home-form-bg {
+    background-color: #347c5c;
+    border-top: 5px solid #ac815b;
+}
+#find-div {
+    margin-top: 20px;
+    white-space: nowrap;
+    float: right;
+}
+#find-car {
+    display: inline;
+    margin-right: 10px;
+}
+.fa-search {
+    color: #e7e7e6;
+}
+.form-inline-home {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin: 10px 10px 10px 0;
+}
+
+.form-inline-home select {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
     background-color: #e7e7e6;
     border: 1px solid #17171c;
     box-shadow: -5px 5px 3px #17171c;
-    border-radius: 0px;
-    margin-top: 10px;
-    color: #17171c;
 }
-.show-select:focus {
-    border-color: #17171c;
-    box-shadow: -5px 5px 3px rgba(39, 15, 15, 0.075) inset, 0px 0px 8px rgba(3, 3, 3, 0.5);
-    background-color: #e7e7e6;
-}
-#show-search-button {
-    background: #ac815b;
-    color: #e7e7e6;
+.form-inline-home button {
+    padding: 10px 20px;
+    background-color: #ac815b;
     box-shadow: -5px 5px 3px #17171c;
+    color: #e7e7e6;
+    cursor: pointer;
     font-weight: bold;
-    border-radius: 0px;
-    width: 90%;
-    margin-top: 10px;
+    font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial","Noto Sans", "sans-serif", "Apple Color Emoji" ,"Segoe UI Emoji", "Segoe UI Symbol" ,"Noto Color Emoji";
 }
-#car-count {
-    margin-top: 10px;
+.form-inline-home button:hover {
+    background-color: #926d4d;
 }
-@media (max-width: 690px) {
+@media (max-width: 800px) {
+    .form-inline-home select {
+        margin: 10px 0;
+    }
+    .form-inline-home {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 20px;
+    }
+}
+
+    /* CSS for home page about us section */
+#home-about-section {
+    background-color: #17171c;
+    border-bottom: #ac815b solid 5px;
+}
+#home-about-img   {
+    width: 100%;
+    max-width: 500px;
+    border: #e7e7e6 solid 3px;
+    margin: 30px;
+}
+@media (max-width: 580px) {
+    #home-about-img {
+        margin: 45px 0px;
+    }
+}
+#about-us {
+    padding-top: 20px;
+}
+#about-home-text-div {
+    margin: 20px 20px 40px 20px;
+    text-align: center;
+}
+
+    /* CSS for home page featured section */
+#featured-section {
+    background-color: #347c5c;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.card-image {
+    border: #ac815b solid 2px;
+}
+#card-edit {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    border: solid #ac815b 2px;
+    background-color: #17171c;
+}
+.card-title, .card-subtitle {
+    display: inline;
+}
+#card-subtitle {
+    float: right;
+    margin-top: 5px;
+}
+#swiper-button-next {
+    background-image: url('/static/img/arrow-next.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    right: -20px;
+}
+#swiper-button-prev {
+    background-image: url('/static/img/arrow-prev.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    left: -20px;
+}
+@media (max-width: 580px) {
+    #swiper-button-prev {
+        left: 40px
+    }
+    #swiper-button-next {
+        right: 40px
+    }
+}
+#swiper-button-next::after, #swiper-button-prev::after {
+    display: none;
+    }
+
+
+
+
+/* **************************** CSS FOR SHOWROOM PAGE **************************** */
+    /* CSS for Showroom Search form Section */
+    #showroom-form-div {
+        background-color: #347c5c;
+        padding: 20px;
+        border-top: #ac815b solid 5px;
+    }
+    .show-select  {
+        background-color: #e7e7e6;
+        border: 1px solid #17171c;
+        box-shadow: -5px 5px 3px #17171c;
+        border-radius: 0px;
+        margin-top: 10px;
+        color: #17171c;
+    }
+    .show-select:focus {
+        border-color: #17171c;
+        box-shadow: -5px 5px 3px rgba(39, 15, 15, 0.075) inset, 0px 0px 8px rgba(3, 3, 3, 0.5);
+        background-color: #e7e7e6;
+    }
     #show-search-button {
-        width: 100%;
+        background: #ac815b;
+        color: #e7e7e6;
+        box-shadow: -5px 5px 3px #17171c;
+        font-weight: bold;
+        font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial","Noto Sans", "sans-serif", "Apple Color Emoji" ,"Segoe UI Emoji", "Segoe UI Symbol" ,"Noto Color Emoji";
+        border-radius: 0px;
+        width: 90%;
+        margin-top: 10px;
     }
     #car-count {
-        font-size: 1rem;
+        margin-top: 10px;
     }
-}
-#show-search-right {
-    padding-right: 5px;
-}
-#show-search-left {
-    padding-left: 5px;
-}
+    @media (max-width: 690px) {
+        #show-search-button {
+            width: 100%;
+        }
+        #car-count {
+            font-size: 1rem;
+        }
+    }
+    #show-search-right {
+        padding-right: 5px;
+    }
+    #show-search-left {
+        padding-left: 5px;
+    }
+    
+    
+        /* CSS for car detail section */
+    #car-section-showroom {
+        background-color: #347c5c;
+        padding: 10px 0px;
+    }
+    .show-car-card-div {
+        background-color: #17171c;
+        margin: 30px 50px;
+        border: solid 2px #ac815b;
+    }
+    .show-car-img-div {
+        padding: 15px;
+    }
+    .show-car-img {
+        padding: 0;
+        border: none;
+    }
+    .show-car-heading {
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #show-heading-price {
+        float: right;
+    }
+    .show-car-table {
+        color: #e7e7e6;
+        border-collapse: separate;
+        border-spacing: 0px 25px;
+        padding-top: 10px;
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+    .show-detail-row-colour {
+        background-color: #1c1c22;
+    }
+    .show-details-button {
+        background-color: #ac815b;
+        color: #e7e7e6;
+        font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial","Noto Sans", "sans-serif", "Apple Color Emoji" ,"Segoe UI Emoji", "Segoe UI Symbol" ,"Noto Color Emoji";
+        margin: 10px 10px;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+        float: right;
+    }
+    
+        /* Pagination CSS */
+    .page-link {
+        background-color: #17171c;
+        color: #e7e7e6;
+        border: none;
+    }
+    .page-link:hover {
+        background-color: #ac815b;
+        color: #e7e7e6;
+    }
+    .page-link:active, .page-link:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .page-item.active .page-link {
+        background-color: #ac815b;
+    }
+    .page-item.disabled .page-link {
+        background-color: #17171c;
+        color: #e7e7e6;
+    }
+
+    
 
 
-    /* CSS for car detail section */
-#car-section-showroom {
-    background-color: #347c5c;
-    padding: 10px 0px;
-}
-.show-car-card-div {
-    background-color: #17171c;
-    margin: 30px 50px;
-    border: solid 2px #ac815b;
-}
-.show-car-img-div {
-    padding: 15px;
-}
-.show-car-img {
-    padding: 0;
-    border: none;
-}
-.show-car-heading {
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-#show-heading-price {
-    float: right;
-}
-.show-car-table {
-    color: #e7e7e6;
-    border-collapse: separate;
-    border-spacing: 0px 25px;
-    padding-top: 10px;
-    margin-bottom: 0;
-    font-size: 16px;
-}
-.show-detail-row-colour {
-    background-color: #1c1c22;
-}
-.show-details-button {
-    background-color: #ac815b;
-    color: #e7e7e6;
-    font-weight: bold;
-    margin: 10px 10px;
-    width: 150px;
-    height: 50px;
-    float: right;
-}
+/* **************************** CSS FOR CAR PAGE **************************** */
 
-    /* Pagination CSS */
-.page-link {
-    background-color: #17171c;
-    color: #e7e7e6;
-    border: none;
-}
-.page-link:hover {
-    background-color: #ac815b;
-    color: #e7e7e6;
-}
-.page-link:active, .page-link:focus {
-    outline: none;
-    box-shadow: none;
-}
-.page-item.active .page-link {
-    background-color: #ac815b;
-}
-.page-item.disabled .page-link {
-    background-color: #17171c;
-    color: #e7e7e6;
-}
-
-
-/*  *************************** CAR PAGE CSS ***************************  */
-    /* Css for car detail section - table and images */
+/* Css for car detail section - table and images */
 #car-details-main {
     background-color: #347c5c;
     border-top: #ac815b solid 5px;;
     padding: 10px 15px;
 }
-#car-page-heading {
-    margin-left: 20px;
+#car-page-heading-div {
+    margin: 30px 50px 0px 50px;
+    background-color: #17171c;
+    padding-top: 20px;
+}
+.car-heading-display {
+    display: inline;
+    padding-left: 5px;
 }
 #car-page-price {
     float: right;
-    padding-right: 20px;
+    padding-right: 5px;
 }
 #car-page-img-spec {
     background-color: #17171c;
-    margin: 30px 50px;
+    margin: 0px 50px 30px 50px;
 }
-@media (max-width: 600px){
+@media (max-width: 700px){
+    #car-page-heading-div {
+        margin: 30px 10px 0px 10px;
+    }
     #car-page-img-spec {
-        margin: 30px 10px;
+        margin: 0px 10px 30px 10px;
+    }
+    .car-heading-display {
+        display: block;
     }
 }
     /* Image carousel CSS */
@@ -426,7 +461,6 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 .car-page-table {
     color: #e7e7e6;
     margin-top: 10px;
-    font-weight: bold;
 }
 .car-detail-row-colour {
     background-color: #1c1c22;
@@ -435,8 +469,8 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 
 
 
-
-    /* Common media query sizes - add code for elements that need to be responsive into media queries below  */
+/* **************************** CSS FOR MEDIA COMMON QUERIES **************************** */
+/* Common media query sizes */
 @media (min-width: 230px) and (max-width: 480px) { /* mobile devices */
     #header-h1 {
         font-size: 1.5rem;

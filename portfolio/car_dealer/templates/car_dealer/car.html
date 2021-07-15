@@ -5,9 +5,9 @@
 {% block body %}
     <!-- Car Details -->
     <div class="container-fluid" id="car-details-main">
-        <div class="row">   <!-- Row for 'year, make, model and price' - This is the white/gray text at the top of the green section  -->
+        <div class="row" id="car-page-heading-div">
             <div class="col-8">
-                <h4 id="car-page-heading">{{ car.year }} {{ car.make }} {{ car.model }}</h4>
+                <h4 class="car-heading-display">{{ car.year }}</h4><h4 class="car-heading-display">{{ car.make }}</h4><h4 class="car-heading-display">{{ car.model }}</h4>
             </div>
             <div class="col-4">
                 <h4 id="car-page-price">£{{ car.price|intcomma }}</h4>
@@ -18,7 +18,7 @@
                 <div class="car-container">
                     <div id="mySlides" class="d-flex align-items-center justify-content-center">
                         {% for image in car_images %}
-                            <img class="featured img-thumbnail" src="/media/{{ image.images }}" alt="Car Image {{ forloop.counter }}">
+                            <img class="featured img-fluid" src="/media/{{ image.images }}" alt="Car Image {{ forloop.counter }}">
                         {% endfor %}
                     </div>
                         <img id="next" src="{% static 'img/arrow-next.png' %}" alt="">
