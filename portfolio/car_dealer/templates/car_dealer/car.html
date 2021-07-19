@@ -83,15 +83,56 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" id="car-page-description-title-row">
+            <div class="col-sm-4" id="car-description-column-title">
+                <h5>DESCRIPTION</h5>
+            </div>
+            <div class="col-sm-4" id="car-dealership-column-title">
+                <h5>DEALERSHIP INFO</h5>
+            </div>
+        </div>
+        <div class="row" id="car-page-description-row">
+            <div class="col-12" id='car-description'>
+                <h5 class="dealer-info-titles">{{ car.title }}</h5>
+                <p>{{ car.description|linebreaks }}</p>
+                <h1 id="car-description-price">£{{ car.price|intcomma }}</h1>
+            </div>
+            <div class=col-12 id="car-dealer-info">
+                <h4 id="dealer-info-heading">Car Shark</h4>
+                <h5 class="dealer-info-titles">ADDRESS</h5>
+                <ul class="list-unstyled dealer-info-list">
+                    <li>20 Dalhousie Road</li>
+                    <li>Barnhill</li>
+                    <li>Dundee</li>
+                    <li>DD5 2SW</li>
+                </ul>
+                <h5 class="dealer-info-titles">TELEPHONE</h5>
+                <ul class="list-unstyled dealer-info-list">
+                    <li>Sales: <span id="nowrap">01382 775500</span></li>
+                    <li>Mobile: <span id="nowrap">07912425861</span></li>
+                    <li>Workshop <span id="nowrap">01382 778777</span></li>
+                </ul>
+                <h5 class="dealer-info-titles">EMAIL</h5>
+                    <a id="dealer-mail" href="mailto:example@example.com">example@example.com</a>
+                <h5 class="dealer-info-titles" id="opening-hours-dealer">OPENING HOURS</h5>
+                <ul class="list-unstyled dealer-info-list">
+                    <li>Monday - Friday: <span id="nowrap">09:00 - 18:00<span></li>
+                    <li>Saturday: <span id="nowrap">09:00 - 17:00<span></li>
+                    <li>Sunday: <span id="nowrap">13:00 - 16:30<span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock body %}
 
 {% block javascript %}
 <script>
-    // Description ***********
+// Description ***********
+    // javascript for image carousel with thumbnail images
     // Main image will be displayed if it has a class of 'mySlideDisplay'
     // Thumbnail will be more visible and scrolled into view if it has a class of 'active'
-    // Description ***********
+// Description ***********
 
     // Makes the first featured image visible
     var mySlide_select = document.getElementById('mySlides');
@@ -111,7 +152,7 @@
     var thumbImages = document.getElementsByClassName('thumbnail');
 
     // Add event listener to all thumbnail images and get the data attriute of the element that is 
-    // clicked and ssign it to the 'slideIndex' variable
+    // clicked and asign it to the 'slideIndex' variable
     // Call changeSlide function and pass 'slideIndex' variable as a parameter
     for(var x = 0; x < thumbImages.length; x++){
         thumbImages[x].addEventListener('click', function(){
@@ -165,10 +206,38 @@
             // code for getting the thumbnail image at index 'slideIndex' and adding the 'active' class
             let newThumb = thumbImages[slideIndex];
             newThumb.className = "thumbnail active";
-            newThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            newThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
         }
         
     }
+
+
+// Description ***********
+    // Code for changing between vehicle description and dealership info
+// Description ***********
+
+    // Get 'car-description-column-title' and 'car-dealership-column-title' by id
+    var description_title = document.getElementById('car-description-column-title');
+    var dealer_info_title = document.getElementById('car-dealership-column-title');
+
+    // get 'car-description' and 'car-dealer-info' sections
+    var description = document.getElementById('car-description');
+    var dealer_info = document.getElementById('car-dealer-info');
+    
+    // Add event listener to 'title' elements selected above and and change element colors and display details on click 
+    description_title.addEventListener('click', function(e){
+        description.style.display = "block";
+        dealer_info.style.display = "none";
+        description_title.style.backgroundColor = "#17171c";
+        dealer_info_title.style.backgroundColor = "#222229";
+    })
+    dealer_info_title.addEventListener('click', function(){
+        description.style.display = "none";
+        dealer_info.style.display = "block";
+        description_title.style.backgroundColor = "#222229";
+        dealer_info_title.style.backgroundColor = "#17171c";
+    })
+
 </script>
 {% endblock javascript %}
 

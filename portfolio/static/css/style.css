@@ -263,6 +263,9 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
         box-shadow: -5px 5px 3px #17171c;
         border-radius: 0px;
         margin-top: 10px;
+        color: black;
+    }
+    .show-select option {
         color: #17171c;
     }
     .show-select:focus {
@@ -333,7 +336,7 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
         font-size: 16px;
     }
     .show-detail-row-colour {
-        background-color: #1c1c22;
+        background-color: #222229;
     }
     .show-details-button {
         background-color: #ac815b;
@@ -464,6 +467,81 @@ h1, h5, h4, h6, p {     /* Used to change color of all h1 and p elements */
 }
 .car-detail-row-colour {
     background-color: #1c1c22;
+}
+    /* Car page details section and dealer info */
+#car-page-description-title-row {
+    margin: 30px 50px 0px 50px;
+}
+#car-page-description-row {
+    margin: 0px 50px 30px 50px;
+    background-color: #17171c;
+}
+@media (max-width: 700px){
+    #car-page-description-title-row {
+        margin: 30px 10px 0px 10px;
+    }
+    #car-page-description-row {
+        margin: 0px 10px 30px 10px;
+    }
+}
+#car-description-column-title {
+    background-color: #17171c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#car-dealership-column-title {
+    background-color: #1c1c22;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#car-description-column-title:hover {
+    cursor: pointer;
+}
+#car-dealership-column-title:hover {
+    cursor: pointer;
+}
+#car-description {
+    display: block;
+    border: #ac815b solid 1px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+#car-dealer-info {
+    display: none;
+    border: #ac815b solid 1px;
+    padding-top: 20px;
+}
+#dealer-info-heading {
+    padding-bottom: 10px;
+}
+.dealer-info-titles {
+    padding-bottom: 5px;
+    font-weight: 100;
+    color: #ac815b;
+}
+#car-description-price {
+    color: #ac815b;
+    padding-bottom: 20px;
+    float: right;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+#car-text {
+    padding-left: 50px;
+}
+#opening-hours-dealer {
+    padding-top: 15px;
+}
+.dealer-info-list {
+    color: #e7e7e6;
+}
+#dealer-mail {
+    color: #e7e7e6;
+    font-size: 18px;
+}
+#dealer-mail:hover {
+    text-decoration: none;
+    color: #ac815b;
 }
 
 

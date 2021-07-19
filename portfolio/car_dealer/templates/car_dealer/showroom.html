@@ -40,15 +40,21 @@
                     <div class="row">
                         <div class="col-6" id="show-search-right">
                             <select class="form-control show-select" name="min" id="car_min">
+                                <option value="">MIN</option>
                                 {% for value in MIN %}
-                                    <option value="{{ value.0 }}">{{ value.1 }}</option>
+                                    {% if not forloop.first %}
+                                        <option value="{{ value.0 }}">£{{ value.1|intcomma }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="col-6" id="show-search-left">
                             <select class="form-control show-select" name="max" id="max_id">
+                                <option value="">MAX</option>
                                 {% for value in MAX %}
-                                    <option value="{{ value.0 }}">{{ value.1 }}</option>
+                                    {% if not forloop.first %}
+                                        <option value="{{ value.0 }}">£{{ value.1|intcomma }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>

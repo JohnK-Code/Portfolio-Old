@@ -2,11 +2,7 @@
 #   REMEMBER TO KEEP NOTES IN PLAN IF REQUIRED
 #   
 #
-#   ************ Homepage is basically done, maybe check responsiveness and add links on featured section once car pages done ************
-#   ************ Change size and length of description field in Django admin ************
-#
-#   ************ Car page - ADD CAR DESCRIPTION DIV UNDER SPECS AND IMAGE DIV ON CAR PAGE **
-#   ************ Links need to be added to the index page featured section cars after the car details page is finished
+#   ************ Car page - Finish responsivness and design on home, showroom and car page - MAYBE TRY ADDING AN IMAGE CROPPING OPTION TO ADMIN and CHANGE DESCRIPTION FIELD TO RICHTEXT FIELD (wysiwyg) **
 
 
 from django.db import models
@@ -96,7 +92,7 @@ class Vehicle(models.Model):    # Model for specifications
     insurance_group = models.PositiveIntegerField(help_text="Please enter insurance group in range of 1-50 - Enter numbers only.") # add choice list in form
     zero_sixty = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Enter numbers only - Example '4.6'")
     top_speed = models.DecimalField(max_digits=5, decimal_places=1, default=0, help_text="Enter number value only - Example '155'.") # add validation in form so only three digits can be entered
-    desctiption = models.TextField()
+    description = models.TextField()
 
     def __str__(self):
         return self.title

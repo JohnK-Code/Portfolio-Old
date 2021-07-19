@@ -34,14 +34,20 @@
                     </select>
                     <label class="sr-only" for="car_min">Min Value</label>
                     <select name="min" id="car_min">
+                        <option value="">MIN</option>
                         {% for value in MIN %}
-                            <option value="{{ value.0 }}">{{ value.1 }}</option>
+                            {% if not forloop.first %}
+                                <option value="{{ value.0 }}">£{{ value.1|intcomma }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <label class="sr-only" for="car_max">Max Value</label>
                     <select name="max" id="car_max">
+                        <option value="">MAX</option>
                         {% for value in MAX %}
-                            <option value="{{ value.0 }}">{{ value.1 }}</option>
+                            {% if not forloop.first %}
+                                <option value="{{ value.0 }}">£{{ value.1|intcomma }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
 
@@ -83,7 +89,7 @@
                                     <!-- Slides -->
                                     <div class="swiper-slide">
                                         <div class="card" id="card-edit">
-                                            <img class="card-img-top card-image" style="height: 200px;" src="media/{{ car.images.all.0.images }}" alt="Car Image">
+                                            <a href="{% url 'car_dealer:car' car.id %}"><img class="card-img-top card-image" style="height: 200px;" src="media/{{ car.images.all.0.images }}" alt="Car Image"></a>
                                             <div class="card-body card-body-edit">
                                                 <h5 class="card-title">{{ car.make }}</h5>
                                                 <h6 class="card-subtitle" id="card-subtitle">£{{ car.price|intcomma }}</h6>
